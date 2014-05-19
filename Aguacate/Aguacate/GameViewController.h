@@ -20,4 +20,6 @@
 @property (strong, nonatomic) UILabel *redScore;
 @property (strong, nonatomic) UILabel *pointsRemaining;
 
+@property (strong, nonatomic) GameCell *prevCell;
+
 @end

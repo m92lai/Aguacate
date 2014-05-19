@@ -85,6 +85,7 @@
 - (void)toggleTurn
 {
     self.blueTurn = !self.blueTurn;
+    [self.delegate updateView];
 }
 
 - (BOOL)isBluesTurn
@@ -96,6 +97,13 @@
 {
     self.blueTurn ? self.blueScore++ : self.redScore++;
     self.pointsRemaining--;
+    
+    if (self.blueScore == 26) {
+        self.gameState = GameStateBlueWins;
+    } else if (self.redScore == 26) {
+        self.gameState = GameStateRedWins;
+    }
+    
     [self.delegate updateView];
 }
 

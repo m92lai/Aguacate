@@ -10,6 +10,12 @@
 
 @protocol GameManagerDelegate;
 
+enum GameState {
+    GameStatePlaying,
+    GameStateBlueWins,
+    GameStateRedWins
+};
+
 @interface GameManager : NSObject
 
 @property (weak, nonatomic) id<GameManagerDelegate> delegate;
@@ -21,9 +27,10 @@
 @property (nonatomic) int redScore;
 @property (nonatomic) int pointsRemaining;
 
+@property enum GameState gameState;
+
 - (BOOL)isPointAtRow:(int)row andColumn:(int)column;
 - (id)objectAtRow:(int)row andColumn:(int)column;
-- (BOOL)isBluesTurn;
 - (void)toggleTurn;
 - (void)updateScore;
 
