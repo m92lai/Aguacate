@@ -27,28 +27,7 @@
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     if (self.isSelected == YES) return;
-    
-    GameManager *mgr = [GameManager instance];
-    NSString *obj = [mgr objectAtRow:self.row andColumn:self.column];
-    
-    if ([@"#" isEqualToString:obj]) {
-        self.backgroundColor = [mgr isBluesTurn] ? [UIColor blueColor] : [UIColor redColor];
-        [mgr updateScore];
-        
-    } else {
-        self.backgroundColor = [UIColor yellowColor];
-        [mgr toggleTurn];
-        if ([@" " isEqualToString:obj]) {
-            // TODO
-            
-        } else {
-            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 17.6875, 17.6875)];
-            label.text = obj;
-            label.textAlignment = NSTextAlignmentCenter;
-            
-            [self addSubview:label];
-        }
-    }
+    [self.delegate cellSelected:self atRow:self.row andColumn:self.column];
 }
     
 @end

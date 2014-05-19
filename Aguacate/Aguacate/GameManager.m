@@ -17,17 +17,6 @@
 // @"[1-8]" represents number of adjacent points
 //
 
-+ (id)instance
-{
-    static GameManager *instance = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        instance = [[self alloc] init];
-    });
-    
-    return instance;
-}
-
 - (id)init
 {
     self = [super init];
@@ -63,10 +52,10 @@
                 [row addObject:@"#"];
             } else {
                 int adjPoints = 0;
-                for (int p = -1; p <= 1; p++) {
-                    for (int q = -1; q <= 1; q++) {
-                        if (p == 0 && q == 0) continue;
-                        if ([self isPointAtRow:(i+p) andColumn:(j+q)]) adjPoints++;
+                for (int x = -1; x <= 1; x++) {
+                    for (int y = -1; y <= 1; y++) {
+                        if (x == 0 && y == 0) continue;
+                        if ([self isPointAtRow:(i+x) andColumn:(j+y)]) adjPoints++;
                     }
                 }
                 
@@ -105,6 +94,7 @@
 - (void)updateScore
 {
     self.blueTurn ? self.blueScore++ : self.redScore++;
+    [self.delegate updateView];
 }
 
 @end

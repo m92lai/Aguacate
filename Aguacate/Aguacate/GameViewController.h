@@ -10,8 +10,9 @@
 #import "GameCell.h"
 #import "GameManager.h"
 
-@interface GameViewController : UIViewController
+@interface GameViewController : UIViewController<GameCellDelegate, GameManagerDelegate>
 
+@property (strong, nonatomic) GameManager *manager;
 @property (strong, nonatomic) NSMutableArray *grid;
 
 @property (strong, nonatomic) UIView *board;

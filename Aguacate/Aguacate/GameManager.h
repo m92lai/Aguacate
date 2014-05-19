@@ -8,7 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol GameManagerDelegate;
+
 @interface GameManager : NSObject
+
+@property (weak, nonatomic) id<GameManagerDelegate> delegate;
 
 @property (strong, nonatomic) NSMutableArray *points;
 @property (strong, nonatomic) NSMutableArray *grid;
@@ -16,12 +20,17 @@
 @property (nonatomic) int blueScore;
 @property (nonatomic) int redScore;
 
-+ (id)instance;
-
 - (BOOL)isPointAtRow:(int)row andColumn:(int)column;
 - (id)objectAtRow:(int)row andColumn:(int)column;
 - (BOOL)isBluesTurn;
 - (void)toggleTurn;
 - (void)updateScore;
+
+@end
+
+@protocol GameManagerDelegate <NSObject>
+
+@required
+- (void)updateView;
 
 @end

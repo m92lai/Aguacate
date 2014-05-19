@@ -8,12 +8,23 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol GameCellDelegate;
+
 @interface GameCell : UIView
 
 @property (nonatomic) int row;
 @property (nonatomic) int column;
 @property (nonatomic) BOOL isSelected;
 
+@property (weak, nonatomic) id<GameCellDelegate> delegate;
+
 - (id)initWithRow:(int)row andColumn:(int)column;
+
+@end
+
+@protocol GameCellDelegate <NSObject>
+
+@required
+- (void)cellSelected:(GameCell *)cell atRow:(int)row andColumn:(int)column;
 
 @end
