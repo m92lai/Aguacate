@@ -18,5 +18,6 @@
 @property (strong, nonatomic) UIView *board;
 @property (strong, nonatomic) UILabel *blueScore;
 @property (strong, nonatomic) UILabel *redScore;
+@property (strong, nonatomic) UILabel *pointsRemaining;
 
 @end

@@ -19,6 +19,7 @@
 @property (nonatomic) BOOL blueTurn;
 @property (nonatomic) int blueScore;
 @property (nonatomic) int redScore;
+@property (nonatomic) int pointsRemaining;
 
 - (BOOL)isPointAtRow:(int)row andColumn:(int)column;
 - (id)objectAtRow:(int)row andColumn:(int)column;

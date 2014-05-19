@@ -24,6 +24,7 @@
         self.blueTurn = YES;
         self.blueScore = 0;
         self.redScore = 0;
+        self.pointsRemaining = 51;
         
         self.points = [NSMutableArray array];
         while ([self.points count] < 51) {
@@ -94,6 +95,7 @@
 - (void)updateScore
 {
     self.blueTurn ? self.blueScore++ : self.redScore++;
+    self.pointsRemaining--;
     [self.delegate updateView];
 }
 

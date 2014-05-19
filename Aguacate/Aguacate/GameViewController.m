@@ -27,15 +27,25 @@
     
     self.manager.delegate = self;
     
-    self.blueScore = [[UILabel alloc] initWithFrame:CGRectMake(10, 50, 150, 50)];
+//    self.blueMarker = [[UILabel alloc] initWithFrame:CGRectMake(<#CGFloat x#>, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)
+    self.blueScore = [[UILabel alloc] initWithFrame:CGRectMake(10, 50, 140, 50)];
     self.blueScore.textAlignment = NSTextAlignmentCenter;
     self.blueScore.text = @"0";
+    self.blueScore.textColor = [UIColor whiteColor];
+    self.blueScore.backgroundColor = [UIColor blueColor];
     [self.view addSubview:self.blueScore];
     
-    self.redScore = [[UILabel alloc] initWithFrame:CGRectMake(160, 50, 150, 50)];
+    self.redScore = [[UILabel alloc] initWithFrame:CGRectMake(170, 50, 140, 50)];
     self.redScore.textAlignment = NSTextAlignmentCenter;
     self.redScore.text = @"0";
+    self.redScore.textColor = [UIColor whiteColor];
+    self.redScore.backgroundColor = [UIColor redColor];
     [self.view addSubview:self.redScore];
+    
+    self.pointsRemaining = [[UILabel alloc] initWithFrame:CGRectMake(10, 115, 300, 20)];
+    self.pointsRemaining.text = [NSString stringWithFormat:@"%d points remaining", 51];
+    self.pointsRemaining.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:self.pointsRemaining];
     
     self.board = [[UIView alloc] initWithFrame:CGRectMake(10, 144, 300, 300)];
     self.board.backgroundColor = [UIColor lightGrayColor];
@@ -114,5 +124,6 @@
 {
     self.blueScore.text = [NSString stringWithFormat:@"%d", [self.manager blueScore]];
     self.redScore.text = [NSString stringWithFormat:@"%d", [self.manager redScore]];
+    self.pointsRemaining.text = [NSString stringWithFormat:@"%d points remaining", [self.manager pointsRemaining]];
 }
 @end
