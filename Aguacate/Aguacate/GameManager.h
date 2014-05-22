@@ -12,8 +12,8 @@
 
 enum GameState {
     GameStatePlaying,
-    GameStateBlueWins,
-    GameStateRedWins
+    GameStateAWins,
+    GameStateBWins
 };
 
 @interface GameManager : NSObject
@@ -22,9 +22,9 @@ enum GameState {
 
 @property (strong, nonatomic) NSMutableArray *points;
 @property (strong, nonatomic) NSMutableArray *grid;
-@property (nonatomic) BOOL blueTurn;
-@property (nonatomic) int blueScore;
-@property (nonatomic) int redScore;
+@property (nonatomic) BOOL ATurn;
+@property (nonatomic) int AScore;
+@property (nonatomic) int BScore;
 @property (nonatomic) int pointsRemaining;
 
 @property enum GameState gameState;

@@ -8,6 +8,7 @@
 //
 
 #import "GameManager.h"
+#import "Constants.h"
 
 @implementation GameManager
 
@@ -21,15 +22,15 @@
 {
     self = [super init];
     if (self) {
-        self.blueTurn = YES;
-        self.blueScore = 0;
-        self.redScore = 0;
-        self.pointsRemaining = 51;
+        self.ATurn = YES;
+        self.AScore = 0;
+        self.BScore = 0;
+        self.pointsRemaining = POINTS_TOTAL;
         
         self.points = [NSMutableArray array];
-        while ([self.points count] < 51) {
-            int r = arc4random() % 16;
-            int c = arc4random() % 16;
+        while ([self.points count] < POINTS_TOTAL) {
+            int r = arc4random() % GRID_SIZE;
+            int c = arc4random() % GRID_SIZE;
             
             NSArray *pos = @[@(r), @(c)];
             if (![self.points containsObject:pos]) {
@@ -46,9 +47,9 @@
 - (void)makeGrid
 {
     self.grid = [NSMutableArray array];
-    for (int i = 0; i < 16; i++) {
+    for (int i = 0; i < GRID_SIZE; i++) {
         NSMutableArray *row = [NSMutableArray array];
-        for (int j = 0; j < 16; j++) {
+        for (int j = 0; j < GRID_SIZE; j++) {
             if ([self isPointAtRow:i andColumn:j]) {
                 [row addObject:@"#"];
             } else {
@@ -84,24 +85,24 @@
 
 - (void)toggleTurn
 {
-    self.blueTurn = !self.blueTurn;
+    self.ATurn = !self.ATurn;
     [self.delegate updateView];
 }
 
 - (BOOL)isBluesTurn
 {
-    return self.blueTurn;
+    return self.ATurn;
 }
 
 - (void)updateScore
 {
-    self.blueTurn ? self.blueScore++ : self.redScore++;
+    self.ATurn ? self.AScore++ : self.BScore++;
     self.pointsRemaining--;
     
-    if (self.blueScore == 26) {
-        self.gameState = GameStateBlueWins;
-    } else if (self.redScore == 26) {
-        self.gameState = GameStateRedWins;
+    if (self.AScore == POINTS_TO_WIN) {
+        self.gameState = GameStateAWins;
+    } else if (self.BScore == POINTS_TO_WIN) {
+        self.gameState = GameStateBWins;
     }
     
     [self.delegate updateView];

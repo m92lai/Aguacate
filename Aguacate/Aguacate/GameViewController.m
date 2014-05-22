@@ -7,6 +7,7 @@
 //
 
 #import "GameViewController.h"
+#import "Constants.h"
 
 @implementation GameViewController
 
@@ -27,20 +28,19 @@
     
     self.manager.delegate = self;
     
-//    self.blueMarker = [[UILabel alloc] initWithFrame:CGRectMake(<#CGFloat x#>, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)
-    self.blueScore = [[UILabel alloc] initWithFrame:CGRectMake(10, 50, 140, 50)];
-    self.blueScore.textAlignment = NSTextAlignmentCenter;
-    self.blueScore.textColor = [UIColor whiteColor];
-    self.blueScore.backgroundColor = [UIColor blueColor];
-    self.blueScore.layer.borderColor = [UIColor yellowColor].CGColor;
-    [self.view addSubview:self.blueScore];
+    self.AScore = [[UILabel alloc] initWithFrame:CGRectMake(10, 50, 140, 50)];
+    self.AScore.textAlignment = NSTextAlignmentCenter;
+    self.AScore.textColor = [UIColor whiteColor];
+    self.AScore.backgroundColor = PLAYER_A_COLOR;
+    self.AScore.layer.borderColor = HIGHLIGHT_COLOR.CGColor;
+    [self.view addSubview:self.AScore];
     
-    self.redScore = [[UILabel alloc] initWithFrame:CGRectMake(170, 50, 140, 50)];
-    self.redScore.textAlignment = NSTextAlignmentCenter;
-    self.redScore.textColor = [UIColor whiteColor];
-    self.redScore.backgroundColor = [UIColor redColor];
-    self.redScore.layer.borderColor = [UIColor yellowColor].CGColor;
-    [self.view addSubview:self.redScore];
+    self.BScore = [[UILabel alloc] initWithFrame:CGRectMake(170, 50, 140, 50)];
+    self.BScore.textAlignment = NSTextAlignmentCenter;
+    self.BScore.textColor = [UIColor whiteColor];
+    self.BScore.backgroundColor = PLAYER_B_COLOR;
+    self.BScore.layer.borderColor = HIGHLIGHT_COLOR.CGColor;
+    [self.view addSubview:self.BScore];
     
     self.pointsRemaining = [[UILabel alloc] initWithFrame:CGRectMake(10, 115, 300, 20)];
     self.pointsRemaining.textAlignment = NSTextAlignmentCenter;
@@ -49,9 +49,9 @@
     self.board = [[UIView alloc] initWithFrame:CGRectMake(10, 144, 300, 300)];
     self.board.backgroundColor = [UIColor lightGrayColor];
     
-    for (int i = 0; i < 16; i++) {
+    for (int i = 0; i < GRID_SIZE; i++) {
         NSMutableArray *row = [NSMutableArray array];
-        for (int j = 0; j < 16; j++) {
+        for (int j = 0; j < GRID_SIZE; j++) {
             GameCell *cell = [[GameCell alloc] initWithRow:i andColumn:j];
             cell.delegate = self;
             
@@ -77,8 +77,8 @@
 
 - (void)updateScores
 {
-    self.blueScore.text = [NSString stringWithFormat:@"%d", [self.manager blueScore]];
-    self.redScore.text = [NSString stringWithFormat:@"%d", [self.manager redScore]];
+    self.AScore.text = [NSString stringWithFormat:@"%d", [self.manager AScore]];
+    self.BScore.text = [NSString stringWithFormat:@"%d", [self.manager BScore]];
 }
 
 - (void)cellSelected:(GameCell *)cell atRow:(int)row andColumn:(int)column
@@ -87,10 +87,11 @@
     NSString *obj = [self.manager objectAtRow:row andColumn:column];
 
     if ([@"#" isEqualToString:obj]) {
-        cell.backgroundColor = [self.manager blueTurn] ? [UIColor blueColor] : [UIColor redColor];
+        cell.backgroundColor = [self.manager ATurn] ? PLAYER_A_COLOR : PLAYER_B_COLOR;
+
         [self.manager updateScore];
     } else {
-        cell.backgroundColor = [UIColor yellowColor];
+        cell.backgroundColor = BLANK_COLOR;
         [self.manager toggleTurn];
         if ([@"" isEqualToString:obj]) {
             for (int i = -1; i <= 1; i++) {
@@ -98,7 +99,7 @@
                     if (i == 0 && j == 0) continue;
                     int dx = row + i;
                     int dy = column + j;
-                    if (dx < 0 || dx >= 16 || dy < 0 || dy >= 16) continue;
+                    if (dx < 0 || dx >= GRID_SIZE || dy < 0 || dy >= GRID_SIZE) continue;
 
                     GameCell *adjCell = [[self.grid objectAtIndex:dx] objectAtIndex:dy];
                     if (adjCell.isSelected != YES) {
@@ -113,13 +114,14 @@
         } else {
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 17.6875, 17.6875)];
             label.text = obj;
+            label.font = [UIFont systemFontOfSize:10];
             label.textAlignment = NSTextAlignmentCenter;
 
             [cell addSubview:label];
         }
     }
     
-    cell.layer.borderColor = [UIColor blackColor].CGColor;
+    cell.layer.borderColor = HIGHLIGHT_COLOR.CGColor;
     cell.layer.borderWidth = 1.5f;
     if (self.prevCell) {
         self.prevCell.layer.borderWidth = 0;
@@ -129,21 +131,21 @@
 
 - (void)updateView
 {
-    if ([self.manager blueTurn]) {
-        self.blueScore.layer.borderWidth = 3.0f;
-        self.redScore.layer.borderWidth = 0;
+    if ([self.manager ATurn]) {
+        self.AScore.layer.borderWidth = 3.0f;
+        self.BScore.layer.borderWidth = 0;
     } else {
-        self.redScore.layer.borderWidth = 3.0f;
-        self.blueScore.layer.borderWidth = 0;
+        self.BScore.layer.borderWidth = 3.0f;
+        self.AScore.layer.borderWidth = 0;
     }
     
-    self.blueScore.text = [NSString stringWithFormat:@"%d", [self.manager blueScore]];
-    self.redScore.text = [NSString stringWithFormat:@"%d", [self.manager redScore]];
+    self.AScore.text = [NSString stringWithFormat:@"%d", [self.manager AScore]];
+    self.BScore.text = [NSString stringWithFormat:@"%d", [self.manager BScore]];
     self.pointsRemaining.text = [NSString stringWithFormat:@"%d points remaining", [self.manager pointsRemaining]];
     
-    if ([self.manager gameState] == GameStateBlueWins) {
+    if ([self.manager gameState] == GameStateAWins) {
         self.pointsRemaining.text = @"Blue Wins!";
-    } else if ([self.manager gameState] == GameStateRedWins) {
+    } else if ([self.manager gameState] == GameStateBWins) {
         self.pointsRemaining.text = @"Red Wins!";
     }
 }

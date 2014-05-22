@@ -16,8 +16,8 @@
 @property (strong, nonatomic) NSMutableArray *grid;
 
 @property (strong, nonatomic) UIView *board;
-@property (strong, nonatomic) UILabel *blueScore;
-@property (strong, nonatomic) UILabel *redScore;
+@property (strong, nonatomic) UILabel *AScore;
+@property (strong, nonatomic) UILabel *BScore;
 @property (strong, nonatomic) UILabel *pointsRemaining;
 
 @property (strong, nonatomic) GameCell *prevCell;

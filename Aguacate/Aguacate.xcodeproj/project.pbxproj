@@ -22,6 +22,7 @@
 		69F6EDCE19298E0D007D3E1C /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F6EDCD19298E0D007D3E1C /* GameViewController.m */; };
 		69F6EDD1192995C1007D3E1C /* GameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F6EDD0192995C1007D3E1C /* GameCell.m */; };
 		69F6EDD419299D1B007D3E1C /* GameManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F6EDD319299D1B007D3E1C /* GameManager.m */; };
+		69F6EDD71929CCD1007D3E1C /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F6EDD61929CCD1007D3E1C /* Constants.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,8 @@
 		69F6EDD0192995C1007D3E1C /* GameCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCell.m; sourceTree = "<group>"; };
 		69F6EDD219299D1B007D3E1C /* GameManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameManager.h; sourceTree = "<group>"; };
 		69F6EDD319299D1B007D3E1C /* GameManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameManager.m; sourceTree = "<group>"; };
+		69F6EDD51929CCD1007D3E1C /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		69F6EDD61929CCD1007D3E1C /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +129,8 @@
 				69F6EDD0192995C1007D3E1C /* GameCell.m */,
 				69F6EDD219299D1B007D3E1C /* GameManager.h */,
 				69F6EDD319299D1B007D3E1C /* GameManager.m */,
+				69F6EDD51929CCD1007D3E1C /* Constants.h */,
+				69F6EDD61929CCD1007D3E1C /* Constants.m */,
 			);
 			path = Aguacate;
 			sourceTree = "<group>";
@@ -259,6 +264,7 @@
 				69F6EDD419299D1B007D3E1C /* GameManager.m in Sources */,
 				6972D8DE19240735000D3724 /* main.m in Sources */,
 				69F6EDD1192995C1007D3E1C /* GameCell.m in Sources */,
+				69F6EDD71929CCD1007D3E1C /* Constants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
