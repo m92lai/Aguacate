@@ -19,7 +19,7 @@
         self.height = 18.6875 * 5 + 1;
         self.frame = CGRectMake(0, 0, self.width, self.height);
         self.backgroundColor = [UIColor clearColor];
-        self.layer.cornerRadius = 10;
+//        self.layer.cornerRadius = 10;
         self.layer.borderWidth = 2;
         self.layer.borderColor = [UIColor blueColor].CGColor;
         self.board = board;

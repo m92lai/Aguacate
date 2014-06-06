@@ -18,6 +18,8 @@
 extern int const GRID_SIZE;
 extern int const POINTS_TOTAL;
 extern int const POINTS_TO_WIN;
+extern float const MIN_SCALE_BOARD;
+extern float const MAX_SCALE_BOARD;
 
 
 @end

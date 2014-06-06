@@ -16,6 +16,7 @@
 @property (strong, nonatomic) GameManager *manager;
 @property (strong, nonatomic) NSMutableArray *grid;
 
+@property (strong, nonatomic) UIView *boardFrame;
 @property (strong, nonatomic) UIView *board;
 @property (strong, nonatomic) UILabel *AScore;
 @property (strong, nonatomic) UILabel *BScore;
@@ -23,5 +24,7 @@
 
 @property (strong, nonatomic) GameCell *prevCell;
 @property (strong, nonatomic) GameBomb *bomb;
+
+@property (nonatomic) CGPoint lastPoint;
 
 @end
