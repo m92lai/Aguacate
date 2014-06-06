@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "GameCell.h"
 #import "GameManager.h"
+#import "GameBomb.h"
 
-@interface GameViewController : UIViewController<GameCellDelegate, GameManagerDelegate>
+@interface GameViewController : UIViewController<GameCellDelegate, GameManagerDelegate, GameBombDelegate>
 
 @property (strong, nonatomic) GameManager *manager;
 @property (strong, nonatomic) NSMutableArray *grid;
@@ -21,5 +22,6 @@
 @property (strong, nonatomic) UILabel *pointsRemaining;
 
 @property (strong, nonatomic) GameCell *prevCell;
+@property (strong, nonatomic) GameBomb *bomb;
 
 @end

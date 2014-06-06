@@ -19,6 +19,7 @@
 		6972D8ED19240735000D3724 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6972D8D519240735000D3724 /* UIKit.framework */; };
 		6972D8F519240735000D3724 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6972D8F319240735000D3724 /* InfoPlist.strings */; };
 		6972D8F719240735000D3724 /* AguacateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6972D8F619240735000D3724 /* AguacateTests.m */; };
+		697C7500192E75C90029303B /* GameBomb.m in Sources */ = {isa = PBXBuildFile; fileRef = 697C74FF192E75C90029303B /* GameBomb.m */; };
 		69F6EDCE19298E0D007D3E1C /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F6EDCD19298E0D007D3E1C /* GameViewController.m */; };
 		69F6EDD1192995C1007D3E1C /* GameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F6EDD0192995C1007D3E1C /* GameCell.m */; };
 		69F6EDD419299D1B007D3E1C /* GameManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F6EDD319299D1B007D3E1C /* GameManager.m */; };
@@ -52,6 +53,8 @@
 		6972D8F219240735000D3724 /* AguacateTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AguacateTests-Info.plist"; sourceTree = "<group>"; };
 		6972D8F419240735000D3724 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6972D8F619240735000D3724 /* AguacateTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AguacateTests.m; sourceTree = "<group>"; };
+		697C74FE192E75C90029303B /* GameBomb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameBomb.h; sourceTree = "<group>"; };
+		697C74FF192E75C90029303B /* GameBomb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameBomb.m; sourceTree = "<group>"; };
 		69F6EDCC19298E0D007D3E1C /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
 		69F6EDCD19298E0D007D3E1C /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
 		69F6EDCF192995C1007D3E1C /* GameCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCell.h; sourceTree = "<group>"; };
@@ -131,6 +134,8 @@
 				69F6EDD319299D1B007D3E1C /* GameManager.m */,
 				69F6EDD51929CCD1007D3E1C /* Constants.h */,
 				69F6EDD61929CCD1007D3E1C /* Constants.m */,
+				697C74FE192E75C90029303B /* GameBomb.h */,
+				697C74FF192E75C90029303B /* GameBomb.m */,
 			);
 			path = Aguacate;
 			sourceTree = "<group>";
@@ -265,6 +270,7 @@
 				6972D8DE19240735000D3724 /* main.m in Sources */,
 				69F6EDD1192995C1007D3E1C /* GameCell.m in Sources */,
 				69F6EDD71929CCD1007D3E1C /* Constants.m in Sources */,
+				697C7500192E75C90029303B /* GameBomb.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

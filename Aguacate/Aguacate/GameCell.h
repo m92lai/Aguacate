@@ -25,6 +25,6 @@
 @protocol GameCellDelegate <NSObject>
 
 @required
-- (void)cellSelected:(GameCell *)cell atRow:(int)row andColumn:(int)column;
+- (void)cellSelected:(GameCell *)cell atRow:(int)row andColumn:(int)column andDisableToggleTurn:(BOOL)disableToggleTurn;
 
 @end
