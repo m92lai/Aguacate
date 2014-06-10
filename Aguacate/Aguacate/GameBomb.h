@@ -18,11 +18,8 @@
 @property (nonatomic) float y0;
 @property (nonatomic) float width;
 @property (nonatomic) float height;
-@property (strong, nonatomic) UIView *board;
 
 @property (weak, nonatomic) id<GameBombDelegate> delegate;
-
-- (id)initWithBoard:(UIView*)board;
 
 @end
 

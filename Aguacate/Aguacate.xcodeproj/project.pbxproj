@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		695D66E5194793C700D4931F /* GameBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 695D66E4194793C700D4931F /* GameBoard.m */; };
 		6972D8D219240735000D3724 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6972D8D119240735000D3724 /* Foundation.framework */; };
 		6972D8D419240735000D3724 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6972D8D319240735000D3724 /* CoreGraphics.framework */; };
 		6972D8D619240735000D3724 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6972D8D519240735000D3724 /* UIKit.framework */; };
@@ -37,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		695D66E3194793C700D4931F /* GameBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameBoard.h; sourceTree = "<group>"; };
+		695D66E4194793C700D4931F /* GameBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameBoard.m; sourceTree = "<group>"; };
 		6972D8CE19240735000D3724 /* Aguacate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aguacate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6972D8D119240735000D3724 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6972D8D319240735000D3724 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -136,6 +139,8 @@
 				69F6EDD61929CCD1007D3E1C /* Constants.m */,
 				697C74FE192E75C90029303B /* GameBomb.h */,
 				697C74FF192E75C90029303B /* GameBomb.m */,
+				695D66E3194793C700D4931F /* GameBoard.h */,
+				695D66E4194793C700D4931F /* GameBoard.m */,
 			);
 			path = Aguacate;
 			sourceTree = "<group>";
@@ -264,6 +269,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				695D66E5194793C700D4931F /* GameBoard.m in Sources */,
 				6972D8E219240735000D3724 /* AppDelegate.m in Sources */,
 				69F6EDCE19298E0D007D3E1C /* GameViewController.m in Sources */,
 				69F6EDD419299D1B007D3E1C /* GameManager.m in Sources */,

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "GameCell.h"
 #import "GameManager.h"
+#import "GameBoard.h"
 #import "GameBomb.h"
 
 @interface GameViewController : UIViewController<GameCellDelegate, GameManagerDelegate, GameBombDelegate>
@@ -17,12 +18,12 @@
 @property (strong, nonatomic) NSMutableArray *grid;
 
 @property (strong, nonatomic) UIView *boardFrame;
-@property (strong, nonatomic) UIView *board;
 @property (strong, nonatomic) UILabel *AScore;
 @property (strong, nonatomic) UILabel *BScore;
 @property (strong, nonatomic) UILabel *pointsRemaining;
 
 @property (strong, nonatomic) GameCell *prevCell;
+@property (strong, nonatomic) GameBoard *board;
 @property (strong, nonatomic) GameBomb *bomb;
 
 @property (nonatomic) CGPoint lastPoint;

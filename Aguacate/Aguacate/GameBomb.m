@@ -10,9 +10,8 @@
 
 @implementation GameBomb
 
-- (id)initWithBoard:(UIView*)board
+- (id)init
 {
-
     self = [super init];
     if (self) {
         self.width = 18.6875 * 5 + 1;
@@ -22,55 +21,47 @@
 //        self.layer.cornerRadius = 10;
         self.layer.borderWidth = 2;
         self.layer.borderColor = [UIColor blueColor].CGColor;
-        self.board = board;
         self.x = 0;
         self.y = 0;
+        
+        UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
+        [self addGestureRecognizer:pan];
     }
     
     return self;
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+- (void)handlePan:(UIPanGestureRecognizer *)gestureRecognizer
 {
-    UITouch *touch = [[event allTouches] anyObject];
-    CGPoint location = [touch locationInView:self.board];
-    self.x0 = location.x;
-    self.y0 = location.y;
-}
-
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    UITouch *touch = [[event allTouches] anyObject];
-    CGPoint location = [touch locationInView:self.board];
-    float dx = location.x - self.x0;
-    float dy = location.y - self.y0;
+    UIView *view = [gestureRecognizer view];
+    UIView *superview = [view superview];
+    CGPoint translation = [gestureRecognizer translationInView:superview];
+    
+    if ([gestureRecognizer state] == UIGestureRecognizerStateEnded) {
+        [self.delegate detonateBomb:self atX:self.frame.origin.x andY:self.frame.origin.y];
+        return;
+    }
+    
+    if ([gestureRecognizer state] == UIGestureRecognizerStateBegan) {
+        self.x0 = translation.x;
+        self.y0 = translation.y;
+    }
+    
+    float dx = translation.x - self.x0;
+    float dy = translation.y - self.y0;
     self.x += dx;
     self.y += dy;
-    self.x0 = location.x;
-    self.y0 = location.y;
-
+    self.x0 = translation.x;
+    self.y0 = translation.y;
+    
     if (self.x < 0) self.x = 0;
     if (self.y < 0) self.y = 0;
-    if (self.x >= self.board.frame.size.width - self.width) self.x = self.board.frame.size.width - self.width;
-    if (self.y >= self.board.frame.size.height - self.height) self.y = self.board.frame.size.height - self.height;
-
-    [self snapBomb];
-}
-
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
-//    self.x = self.frame.origin.x;
-//    self.y = self.frame.origin.y;
-    [self.delegate detonateBomb:self atX:self.frame.origin.x andY:self.frame.origin.y];
-}
-
-- (void)snapBomb
-{
+    if (self.x >= superview.frame.size.width - self.width) self.x = superview.frame.size.width - self.width;
+    if (self.y >= superview.frame.size.height - self.height) self.y = superview.frame.size.height - self.height;
+    
     int cellx = self.x / 18.6875;
     int celly = self.y / 18.6875;
     self.frame = CGRectMake(cellx * 18.6875, celly * 18.6875, self.width, self.height);
 }
-
-
 
 @end
