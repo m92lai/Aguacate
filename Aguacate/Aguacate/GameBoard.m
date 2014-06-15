@@ -7,6 +7,7 @@
 //
 
 #import "GameBoard.h"
+#import "Constants.h"
 
 @implementation GameBoard
 
@@ -14,7 +15,9 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor colorWithRed:240.0f/255.0f green:240.0f/255.0f blue:240.0f/255.0f alpha:1];
+        self.backgroundColor = BACKGROUND_COLOR;
+        
+        // Attach gesture recognizers
         UIPinchGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinch:)];
         UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
         [self addGestureRecognizer:pinch];
@@ -39,36 +42,34 @@
 - (void)handlePinch:(UIPinchGestureRecognizer *)gestureRecognizer
 {
     [self adjustAnchorPointForGestureRecognizer:gestureRecognizer];
-    
-    UIView *view = [gestureRecognizer view];
+
+    UIView *view = gestureRecognizer.view;
     CGAffineTransform t0 = view.transform;
     
     if ([gestureRecognizer state] == UIGestureRecognizerStateBegan || [gestureRecognizer state] == UIGestureRecognizerStateChanged) {
-        [gestureRecognizer view].transform = CGAffineTransformScale([[gestureRecognizer view] transform], [gestureRecognizer scale], [gestureRecognizer scale]);
+        view.transform = CGAffineTransformScale(view.transform, gestureRecognizer.scale, gestureRecognizer.scale);
         [gestureRecognizer setScale:1];
     }
     
-    float x = view.frame.origin.x;
-    float y = view.frame.origin.y;
+    NSLog(@"%f", BOARD_SIZE);
     float width = view.frame.size.width;
     float height = view.frame.size.height;
-    
-    if (width < 300 || height < 300 || width > 1200 || height > 1200)
+    if (width < BOARD_SIZE ||
+        height < BOARD_SIZE ||
+        width > 300 * MAX_SCALE_BOARD ||
+        height > 300 * MAX_SCALE_BOARD)
         view.transform = t0;
     
-    CGRect frame = view.frame;
-    if (x > 0) {
-        frame.origin.x = 0;
-    }
-    if (y > 0) {
-        frame.origin.y = 0;
-    }
-    if (x + view.frame.size.width < view.superview.frame.size.width) {
-        frame.origin.x = view.superview.frame.size.width - view.frame.size.width;
-    }
-    if (y + view.frame.size.height < view.superview.frame.size.height)
-        frame.origin.y = view.superview.frame.size.height - view.frame.size.height;
+    float x = view.frame.origin.x;
+    float y = view.frame.origin.y;
+    float w = view.superview.frame.size.width;
+    float h = view.superview.frame.size.height;
     
+    CGRect frame = view.frame;
+    if (x > 0) frame.origin.x = 0;
+    if (y > 0) frame.origin.y = 0;
+    if (x + width < w) frame.origin.x = w - width;
+    if (y - height < h) frame.origin.y = h - height;
     [view setFrame:frame];
 }
 
@@ -76,20 +77,22 @@
 {
     [self adjustAnchorPointForGestureRecognizer:gestureRecognizer];
     
-    UIView *view = [gestureRecognizer view];
-    CGPoint c0 = [view center];
+    UIView *view = gestureRecognizer.view;
+    CGPoint c0 = view.center;
     
     if ([gestureRecognizer state] == UIGestureRecognizerStateBegan || [gestureRecognizer state] == UIGestureRecognizerStateChanged) {
-        CGPoint translation = [gestureRecognizer translationInView:[view superview]];
+        CGPoint translation = [gestureRecognizer translationInView:view.superview];
         
-        [view setCenter:CGPointMake([view center].x + translation.x, [view center].y + translation.y)];
-        [gestureRecognizer setTranslation:CGPointZero inView:[view superview]];
+        [view setCenter:CGPointMake(view.center.x + translation.x, view.center.y + translation.y)];
+        [gestureRecognizer setTranslation:CGPointZero inView:view.superview];
     }
     
     float x = view.frame.origin.x;
     float y = view.frame.origin.y;
-    if (x > 0 || y > 0 || x + view.frame.size.width < view.superview.frame.size.width ||
-        y + view.frame.size.height < view.superview.frame.size.height)
+    if (x > 0 ||
+        y > 0 ||
+        x < view.superview.frame.size.width - view.frame.size.width ||
+        y < view.superview.frame.size.height -  view.frame.size.height)
         [view setCenter:c0];
 }
 
